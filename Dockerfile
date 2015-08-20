@@ -2,7 +2,7 @@
 FROM golang:onbuild
 
 # Install docker client
-RUN apt-get install -y wget && wget -qO- https://get.docker.com/ | sh
+RUN wget -qO- https://get.docker.com/ubuntu/ | sed -r 's/^apt-get install -y lxc-docker$/apt-get install -y lxc-docker-1.6.2/g' | sh
 
 # Install runner
 RUN /go/src/app/packaging/root/usr/share/gitlab-runner/post-install
